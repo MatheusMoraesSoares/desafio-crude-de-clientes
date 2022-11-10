@@ -18,3 +18,50 @@ Content-Type: application/json
     "email": "matheus@gmail.com",
     "password": "123456"
 }
+
+###insert new client
+POST http://localhost:3003/client/insert
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "matheus moraes",
+    "cpf": 12345678798,
+    "birth": "05072000",
+    "fathersname": "rubem soares",
+    "mothersname": "andreia moraes",
+    "cep": 45603090,
+    "logradouro": "Rua Ariston Caldas",
+    "complemento": "1 andar",
+    "bairro": "Pontalzinho",
+    "localidade": "Itabuna",
+    "uf": "BA",
+    "ibge": 2914802,
+    "gia": 1,
+    "ddd": 73,
+    "siafi": 3597
+}
+
+###get all clients
+GET http://localhost:3003/client/getAll
+Authorization: {{token}}
+
+###delete client by id
+DELETE http://localhost:3003/client/delete
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "id": "01443f7e-9a91-4865-b0d0-72c6cf5d08e6"
+}
+
+###edit client
+PUT http://localhost:3003/client/edit
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "id": "7d703b27-017b-416d-a50b-e424044cea5d",
+    "name": "daniel daniel",
+    "cpf": 99999999999
+}

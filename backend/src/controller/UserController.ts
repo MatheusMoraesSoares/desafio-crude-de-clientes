@@ -10,7 +10,6 @@ export class UserController {
 
     signUp = async (req: Request, res: Response) => {
         try {
-            console.log("oi")
             const { name, email, password } = req.body
 
             const user: SignupInputDTO = { name, email, password }

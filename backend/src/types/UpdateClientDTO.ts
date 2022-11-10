@@ -1,0 +1,18 @@
+export type UpdateClientDTO = {
+    id: string,
+    name?: string,
+    cpf?: number,
+    birth?: string,
+    fathersname?: string,
+    mothersname?: string
+    cep?: number,
+    logradouro?: string,
+    complemento?: string,
+    bairro?: string,
+    localidade?: string,
+    uf?: string,
+    ibge?: number,
+    gia?: number,
+    ddd?: number,
+    siafi?: number
+}

@@ -5,12 +5,21 @@ CREATE TABLE user(
     password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE list(
+CREATE TABLE client(
 	id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     cpf VARCHAR(255) UNIQUE NOT NULL,
     birth VARCHAR(255) NOT NULL,
-	address VARCHAR(255) NOT NULL,
     fathersname VARCHAR(255) NOT NULL,
-    mothersname VARCHAR(255) NOT NULL
+    mothersname VARCHAR(255) NOT NULL,
+	cep VARCHAR(255) NOT NULL,
+    logradouro VARCHAR(255) NOT NULL,
+    complemento VARCHAR(255) NOT NULL,
+    bairro VARCHAR(255) NOT NULL,
+    localidade VARCHAR(255) NOT NULL,
+    uf VARCHAR(2) NOT NULL,
+    ibge VARCHAR(255) NOT NULL,
+    gia VARCHAR(255) NOT NULL,
+    ddd VARCHAR(2) NOT NULL,
+    siafi VARCHAR(255) NOT NULL
 );
