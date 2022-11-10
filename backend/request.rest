@@ -1,0 +1,20 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyYTM5MGUzLTAyZGUtNDcwOS1iZDZhLTYyNmIzYmI1MDNjNCIsImlhdCI6MTY2ODA0MDUwMCwiZXhwIjoxNjY4MTI2OTAwfQ.vyrapmbJ-y9ODAjLTU0v6v2Gj-3OU-1VMjYxpMuGZ0c
+
+###create user
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "matheus",
+    "email": "matheus@gmail.com",
+    "password": "123456"
+}
+
+###login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "matheus@gmail.com",
+    "password": "123456"
+}
