@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyYTM5MGUzLTAyZGUtNDcwOS1iZDZhLTYyNmIzYmI1MDNjNCIsImlhdCI6MTY2ODA0MDUwMCwiZXhwIjoxNjY4MTI2OTAwfQ.vyrapmbJ-y9ODAjLTU0v6v2Gj-3OU-1VMjYxpMuGZ0c
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyYTM5MGUzLTAyZGUtNDcwOS1iZDZhLTYyNmIzYmI1MDNjNCIsImlhdCI6MTY2ODU0MzQ2MSwiZXhwIjoxNjY4NjI5ODYxfQ.DmPD1LemMjHYOVD1q0ljIxgndn4mOtgzVBuV5-RWjMc
 
 ###create user
 POST http://localhost:3003/user/signup
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 {
     "name": "matheus moraes",
-    "cpf": 12345678798,
+    "cpf": 12345678790,
     "birth": "05072000",
     "fathersname": "rubem soares",
     "mothersname": "andreia moraes",
@@ -52,7 +52,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "id": "01443f7e-9a91-4865-b0d0-72c6cf5d08e6"
+    "id": "0af16f6b-8c49-4359-96c3-b1267151015f"
 }
 
 ###edit client

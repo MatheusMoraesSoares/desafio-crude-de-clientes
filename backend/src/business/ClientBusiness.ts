@@ -40,6 +40,7 @@ export class ClientBusiness {
             }
 
             const newClientId = IdGenerator.idGenerator()
+            // const newClient = new Client(newClientId, ...client) //TUPLA
             const newClient = new Client(
                 newClientId,
                 client.name,
