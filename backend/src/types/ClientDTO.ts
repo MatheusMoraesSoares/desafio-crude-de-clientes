@@ -4,7 +4,7 @@ export type ClientDTO = {
     birth: string,
     fathersname: string,
     mothersname: string
-    cep: number,
+    cep: string,
     logradouro: string,
     complemento: string,
     bairro: string,

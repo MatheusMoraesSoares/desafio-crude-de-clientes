@@ -38,15 +38,17 @@
             <div class="data-box">{{ client.gia }}</div>
             <div class="data-box">{{ client.ddd }}</div>
             <div class="data-box">{{ client.siafi }}</div>
-            <button class="data-box">edit</button>
-            <button v-on:click="deleteClient(client.id, $event)" class="data-box" id="delete-button">delete</button>
+            <router-link :to="{path: '/client/edit', query: {id: client.id}}" id="router-box">EDIT</router-link>
+            <button v-on:click="deleteClient(client.id, $event)">DELETE</button>
         </form>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
-import { baseURL } from '@/constants/baseURL';
+import { baseURL } from '@/constants/consts';
+import EditClient from '@/views/EditClient.vue'
+import EditClientForm from './EditClientForm.vue';
 
 export default {
     name: "ClientsList",
@@ -56,19 +58,22 @@ export default {
             token: null
         }
     },
+    components: {
+        EditClientForm,
+        EditClient
+    },
     methods: {
         getClients() {
 
             axios.get(`${baseURL}/client/getAll`, {
                 headers: { Authorization: localStorage.getItem('token') }
             }).then((res) => {
-                console.log(res)
                 this.token = localStorage.getItem('token')
                 for (var i = 0; i < res.data.message.length; i++) {
                     this.clients[i] = res.data.message[i]
                 }
             }).catch((err) => {
-                console.log(err.response)
+                alert(err.response.data.message)
             })
         },
         deleteClient(id, e) {
@@ -81,10 +86,9 @@ export default {
             axios.delete(`${baseURL}/client/delete`, {data: {id: id},
                 headers: { Authorization: localStorage.getItem('token') }
             }).then((res) => {
-                console.log(res)
                 document.location.reload(true)
             }).catch((err) => {
-                console.log(err.response)
+                alert(err.response.data.message)
             })
         }
     },
@@ -114,8 +118,25 @@ export default {
     cursor: pointer;
     transition: .5s;
 }
-
 .clients-data button:hover {
+    background-color: transparent;
+    color: #222;
+}
+
+#router-box {
+    display: flex;
+    background-color: rgb(139, 139, 139);
+    color: rgb(202, 39, 39);
+    font-weight: bold;
+    font-size: .9rem;
+    border: 2px solid #222;
+    cursor: pointer;
+    transition: .5s;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+#router-box:hover {
     background-color: transparent;
     color: #222;
 }

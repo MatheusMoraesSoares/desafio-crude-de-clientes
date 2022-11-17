@@ -15,22 +15,21 @@ export class ClientBusiness {
     insertClient = async (client: any) => {
         try {
             const keys = Object.keys(client)
-
+            if(!client.gia){
+                client.gia = 1
+            }
             for (var i = 0; i < keys.length; i++) {
                 if (!client[keys[i]]){
-                    throw new InvalidInputError("Invalid input. All fields are required.")
+                    throw new InvalidInputError("Invalid input. All fields except for GIA, are required.")
                 }
             }
 
-            if (!Number.isInteger(client.cpf) || !Number.isInteger(client.cep) || !Number.isInteger(client.ibge) || !Number.isInteger(client.gia) || !Number.isInteger(client.ddd) || !Number.isInteger(client.siafi)) {
-                throw new InvalidInputError("CPF, CEP, IBGE, GIA, DDD and SIAFI are numbers exclusivily fields.")
-            }
             const CPF = String(client.cpf)
             if (CPF.length != 11) {
                 throw new InvalidInputError("CPF must contain 11 digits.")
             }
             const CEP = String(client.cep)
-            if (CEP.length != 8) {
+            if (CEP.length < 8 || 9 < CEP.length) {
                 throw new InvalidInputError("CEP must contain 8 digits.")
             }
             const result = await this.clientDatabase.getClientByCPF(client.cpf)
@@ -40,25 +39,8 @@ export class ClientBusiness {
             }
 
             const newClientId = IdGenerator.idGenerator()
-            // const newClient = new Client(newClientId, ...client) //TUPLA
-            const newClient = new Client(
-                newClientId,
-                client.name,
-                client.cpf,
-                client.birth,
-                client.fathersname,
-                client.mothersname,
-                client.cep,
-                client.logradouro,
-                client.complemento,
-                client.bairro,
-                client.localidade,
-                client.uf,
-                client.ibge,
-                client.gia,
-                client.ddd,
-                client.siafi
-            )
+            const data:ClientDTO = {...client}
+            const newClient = new Client(newClientId, data)
 
             await this.clientDatabase.insertClient(newClient)
 
@@ -77,10 +59,19 @@ export class ClientBusiness {
         }
     }
 
+    getClientById = async (id: string) => {
+        try {
+            return await this.clientDatabase.getClientById(id)
+        } catch (error: any) {
+            throw new CustomError(500, error.sqlMessage || error.message)
+        }
+    }
+
     deleteClient = async (id: string) => {
         try {
             const result = await this.clientDatabase.getClientById(id)
-            if (!result[0]) {
+            
+            if (!result) {
                 throw new NotFoundError("Client not found")
             }
 
@@ -95,7 +86,7 @@ export class ClientBusiness {
         try {
             const result = await this.clientDatabase.getClientById(id)
 
-            if (!result[0]) {
+            if (!result) {
                 throw new NotFoundError("Client not found")
             }
 
@@ -107,7 +98,7 @@ export class ClientBusiness {
             }
             if(data.cep){
                 const CEP = String(data.cep)
-                if (CEP.length != 8) {
+                if (CEP.length < 8 || 9 < CEP.length) {
                     throw new InvalidInputError("CEP must contain 8 digits.")
                 }
             }

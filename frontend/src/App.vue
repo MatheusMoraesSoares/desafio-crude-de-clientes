@@ -4,28 +4,13 @@
 </template>
 
 <script>
-import { baseURL } from './constants/baseURL';
-import axios from 'axios'
+import { baseURL } from './constants/consts';
 import NavBar from './components/NavBar.vue'
 
   export default {
     components: {
       NavBar
-    },
-    // methods: {
-    //   validate() {
-    //     axios.get(`${baseURL}/client/getAll`)
-    //       .then((res)=>{
-    //         console.log(res)
-    //         if(res.data.status == 'Token is Invalid'){
-    //           this.$router.push('/login')
-    //         }
-    //       })
-    //   }
-    // },
-    // created() {
-    //   this.validate()
-    // }
+    }
   }
 </script>
 

@@ -25,7 +25,7 @@ export class ClientDatabase extends BaseDatabase {
                 .from(ClientDatabase.TABLE)
                 .where({id})
                 
-            return result
+            return result[0]
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

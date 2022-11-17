@@ -16,7 +16,6 @@ export class ClientController {
             const { name, cpf, birth, fathersname, mothersname, cep, logradouro, complemento, bairro, localidade, uf, ibge, gia, ddd, siafi } = req.body
 
             const user = Authenticator.getTokenData(token)
-
             if(!user) {
                 throw new InvalidInputError("You must be logged in to perform this action.")
             }
@@ -45,6 +44,29 @@ export class ClientController {
 
             res.status(201).send({ message: result})
 
+        } catch (error: any) {
+            res.status(error.statusCode || 500).send({ message: error.message })
+        }
+    }
+
+    getClientById = async (req: Request, res: Response) => {
+        try {
+            const token = req.headers.authorization as string
+            const user = Authenticator.getTokenData(token)
+            const id = req.params.id
+
+            if (!id || id === ":id") {
+                res.statusCode = 400
+                throw new Error("Please provid an id")
+            }
+            
+            if(!user) {
+                throw new InvalidInputError("You must be logged in to perform this action.")
+            }
+
+            const result = await this.clientBusiness.getClientById(id)
+
+            res.status(201).send({ message: result})
         } catch (error: any) {
             res.status(error.statusCode || 500).send({ message: error.message })
         }

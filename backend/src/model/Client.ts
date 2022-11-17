@@ -1,21 +1,9 @@
+import { ClientDTO } from "../types/ClientDTO"
+
 export class Client {
     constructor(
         private id: string,
-        private name: string,
-        private cpf: number,
-        private birth: string,
-        private fathersname: string,
-        private mothersname: string,
-        private cep: number,
-        private lougradouro: string,
-        private complemento: string,
-        private bairro: string,
-        private localidade: string,
-        private uf: string,
-        private ibge: number,
-        private gia: number,
-        private ddd: number,
-        private siafi: number
+        private obj: ClientDTO
     ) { }
 
     public getId(): string {
@@ -23,83 +11,69 @@ export class Client {
     }
 
     public getName(): string {
-        return this.name
+        return this.obj.name
     }
 
     public getCPF(): number {
-        return this.cpf
+        return this.obj.cpf
     }
 
     public getbirth(): string {
-        return this.birth
+        return this.obj.birth
     }
 
     public getFathersname(): string {
-        return this.fathersname
+        return this.obj.fathersname
     }
 
     public getMothersname(): string {
-        return this.mothersname
+        return this.obj.mothersname
     }
 
-    public getCEP(): number {
-        return this.cep
+    public getCEP(): string {
+        return this.obj.cep
     }
 
     public getLogradouro(): string {
-        return this.lougradouro
+        return this.obj.logradouro
     }
 
     public getComplemento(): string {
-        return this.complemento
+        return this.obj.complemento
     }
 
     public getBairro(): string {
-        return this.bairro
+        return this.obj.bairro
     }
 
     public getLocalidade(): string {
-        return this.localidade
+        return this.obj.localidade
     }
 
     public getUF(): string {
-        return this.uf
+        return this.obj.uf
     }
 
     public getIBGE(): number {
-        return this.ibge
+        return this.obj.ibge
     }
 
     public getGIA(): number {
-        return this.gia
+        return this.obj.gia
     }
 
     public getDDD(): number {
-        return this.ddd
+        return this.obj.ddd
     }
 
     public getSIAFI(): number {
-        return this.siafi
+        return this.obj.siafi
     }
 
     static toUserModel(client: any): Client {
         return new Client(
             client.id,
-            client.name,
-            client.cpf,
-            client.birth,
-            client.fathersname,
-            client.mothersname,
-            client.cep,
-            client.lougradouro,
-            client.complemento,
-            client.bairro,
-            client.localidade,
-            client.uf,
-            client.ibge,
-            client.gia,
-            client.ddd,
-            client.siafi
+            client.obj
         )
     }
 }
