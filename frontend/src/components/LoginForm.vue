@@ -1,4 +1,4 @@
-<template v-cloak>
+<template v-cloak :key="count">
     <body>
         <div class="Login-background">
             <form id="Login-form" @submit="login">
@@ -19,31 +19,35 @@
 
 <script>
 import axios from 'axios';
-import { baseURL } from '@/constants/baseURL'
+import { baseURL } from '@/constants/consts'
+import NavBar from './NavBar.vue';
+import { store } from '@/store/store'
 
 export default {
     name: "LoginForm",
     data() {
         return {
             email: null,
-            password: null
-        }
+            password: null,
+            store
+        };
     },
     methods: {
         login(e) {
             e.preventDefault();
-            const data = {email:this.email, password: this.password}
-
+            const data = { email: this.email, password: this.password };
             axios.post(`${baseURL}/user/login`, data)
-                .then((res)=> {
-                    localStorage.setItem('token', res.data.token)
-                    this.$router.push('/')
-                })
-                .catch((err)=>{
-                    console.log(err.response)
-                })
+                .then((res) => {
+                localStorage.setItem("token", res.data.token);
+                this.store.logged = true
+                this.$router.push("/");
+            })
+                .catch((err) => {
+                alert(err.response.data.message);
+            });
         }
-    }
+    },
+    components: { NavBar }
 }
 </script>
 
@@ -56,6 +60,7 @@ export default {
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 1);
     border-radius: 8px
 }
+
 body {
     /* min-height: 100vh;
         min-width: 100vw; */
@@ -96,6 +101,7 @@ body {
     margin: 0 auto;
     justify-content: flex-start;
 }
+
 #Login-form h1 {
     font-size: 5vw;
 }

@@ -13,5 +13,6 @@ export const clientRouter = express.Router()
 
 clientRouter.post('/insert', clientController.insertClient)
 clientRouter.get('/getAll', clientController.getAllClients)
+clientRouter.get('/:id', clientController.getClientById)
 clientRouter.delete('/delete', clientController.deleteClient)
 clientRouter.put('/edit', clientController.editClient)

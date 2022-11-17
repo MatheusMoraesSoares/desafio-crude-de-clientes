@@ -23,7 +23,8 @@
 
 <script>
 import axios from 'axios'
-import { baseURL } from '@/constants/baseURL';
+import { baseURL } from '@/constants/consts';
+import { store } from '@/store/store'
 
 export default {
     name: "SignupForm",
@@ -37,15 +38,16 @@ export default {
     methods: {
         signup(e) {
             e.preventDefault();
-            const data = {name: this.name, email:this.email, password: this.password}
+            const data = { name: this.name, email: this.email, password: this.password }
 
             axios.post(`${baseURL}/user/signup`, data)
-                .then((res)=> {
+                .then((res) => {
                     localStorage.setItem('token', res.data.token)
+                    store.logged = true
                     this.$router.push('/')
                 })
-                .catch((err)=>{
-                    console.log(err.response)
+                .catch((err) => {
+                    alert(err.response.data.message)
                 })
         }
     }

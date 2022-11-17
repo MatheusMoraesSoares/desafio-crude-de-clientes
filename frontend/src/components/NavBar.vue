@@ -1,15 +1,28 @@
 <template>
-
     <div id="nav">
         <router-link to="/" id="home">Home</router-link>
-        <router-link to="/Login">Login</router-link>
-        <router-link to="/Signup">Signup</router-link>
+        <router-link to="/client/insert">+Cliente</router-link>
+        <router-link :key="store.logged" to="/Login" v-show="!store.logged">Login</router-link>{{store.count}}
+        <router-link :key="store.logged" to="/Signup" v-show="!store.logged">Signup</router-link>
+        <router-link :key="store.logged" to="/Login" :to="signout" v-on:click="signout" v-show="store.logged">Signout</router-link>
     </div>
 </template>
 
 <script>
+import { store } from '@/store/store'
+
 export default {
     name: 'NavBar',
+    data() {
+        return {
+            store
+        }
+    },
+    methods: {
+        signout() {
+            this.store.logged = localStorage.removeItem('token')
+        }
+    }
 }
 </script>
 

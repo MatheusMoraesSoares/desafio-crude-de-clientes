@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyYTM5MGUzLTAyZGUtNDcwOS1iZDZhLTYyNmIzYmI1MDNjNCIsImlhdCI6MTY2ODU0MzQ2MSwiZXhwIjoxNjY4NjI5ODYxfQ.DmPD1LemMjHYOVD1q0ljIxgndn4mOtgzVBuV5-RWjMc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyYTM5MGUzLTAyZGUtNDcwOS1iZDZhLTYyNmIzYmI1MDNjNCIsImlhdCI6MTY2ODY1NjcwNywiZXhwIjoxNjY4NzQzMTA3fQ.N0FPdTk-QmPiw9eLWngyhTnZIEAFmGbJKZxnfGeIFhM
 
 ###create user
 POST http://localhost:3003/user/signup
@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
     "name": "matheus",
-    "email": "matheus@gmail.com",
+    "email": "augusto@gmail.com",
     "password": "123456"
 }
 
@@ -25,19 +25,19 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "matheus moraes",
-    "cpf": 12345678790,
-    "birth": "05072000",
+    "name": "joaozinho",
+    "cpf": 12345678232,
+    "birth": "2000-07-05",
     "fathersname": "rubem soares",
     "mothersname": "andreia moraes",
-    "cep": 45603090,
+    "cep": "45603090",
     "logradouro": "Rua Ariston Caldas",
     "complemento": "1 andar",
     "bairro": "Pontalzinho",
     "localidade": "Itabuna",
     "uf": "BA",
     "ibge": 2914802,
-    "gia": 1,
+    "gia": "",
     "ddd": 73,
     "siafi": 3597
 }
@@ -46,13 +46,17 @@ Content-Type: application/json
 GET http://localhost:3003/client/getAll
 Authorization: {{token}}
 
+###get client by id
+GET http://localhost:3003/client/efb340ad-0c7f-456c-b48a-de4a0dec441d
+Authorization: {{token}}
+
 ###delete client by id
 DELETE http://localhost:3003/client/delete
 Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "id": "0af16f6b-8c49-4359-96c3-b1267151015f"
+    "id": "efb340ad-0c7f-456c-b48a-de4a0dec441d"
 }
 
 ###edit client
@@ -61,7 +65,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "id": "7d703b27-017b-416d-a50b-e424044cea5d",
+    "id": "39f009b2-bdb2-44c6-8e82-644a0fa95442",
     "name": "daniel daniel",
     "cpf": 99999999999
 }
